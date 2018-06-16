@@ -20,9 +20,14 @@ eg.
 ```
 
 ```
+    Deadpool 2\
+                >Deadpool.2.2018.mkv
+                >theme.wav
+```
+```
     The Big Bang Theory\
                          >Season 01\
-                         >theme.mp
+                         >theme.mp3
 ```
 ## Getting Support
 
