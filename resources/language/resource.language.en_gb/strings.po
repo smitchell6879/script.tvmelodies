@@ -1,0 +1,21 @@
+# XBMC Media Center language file
+# Addon Name: TV Melodies
+# Addon id: script.tvmelodies
+msgid ""
+msgstr ""
+
+msgctxt "#30000"
+msgid "TV Melodies"
+msgstr ""
+
+msgctxt "#30001"
+msgid "General"
+msgstr "settings.xml-category"
+
+msgctxt "#30002"
+msgid "Enable TV Melodies"
+msgstr "settings.xml"
+
+msgctxt "#30003"
+msgid "Enable Debug"
+msgstr "settings.xml"

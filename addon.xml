@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="script.tvmelodies"
+version="0.0.1"
+name="TV Melodies"
+provider-name="smitchell6879">
+<requires>
+  <import addon="xbmc.python" version="2.25.0"/>
+  <import addon="script.module.pymysql" version="0.8.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="plugin.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.service" library="service.py" start="[login]"/>
+<!-- <extension point="xbmc.python.script" library="script.py"/> -->
+<extension point="xbmc.addon.metadata">
+  <summary lang="en_GB"></summary>
+  <description lang="en_GB"></description>
+  <disclaimer lang="en_GB">Kodi 17/18 Required</disclaimer>
+  <assets>
+    <icon>resources/icon.png</icon>
+    <!-- <fanart>resources/fanart.jpg</fanart> -->
+  </assets>
+  <news></news>
+</extension>
+</addon>
