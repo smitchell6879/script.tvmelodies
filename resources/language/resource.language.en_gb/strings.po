@@ -17,5 +17,17 @@ msgid "Enable TV Melodies"
 msgstr "settings.xml"
 
 msgctxt "#30003"
+msgid "Delay Theme Player (seconds)"
+msgstr "settings.xml"
+
+msgctxt "#30004"
+msgid ""
+msgstr "settings.xml"
+
+msgctxt "#30005"
+msgid ""
+msgstr "settings.xml"
+
+msgctxt "#30010"
 msgid "Enable Debug"
 msgstr "settings.xml"

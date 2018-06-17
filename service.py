@@ -33,32 +33,56 @@ import xbmcvfs
 addon = xbmcaddon.Addon()
 player = xbmc.Player()
 addonID = addon.getAddonInfo("id")
+home = xbmcgui.Window(10000)
 
 class Monitor(xbmc.Monitor):
     def __init__(self):
         xbmc.log(msg='{}:{}'.format(addonID, "is running"), level=xbmc.LOGINFO)
         self.nowplaying = ""
+        self.nowplayingp = ""
+        self.timer = 0
         while not self.abortRequested():
             self.enable = addon.getSetting("enable")
+            self.delay = int(addon.getSetting("delay"))
             self.debug = addon.getSetting("debug")
             if self.enable == "true":
                 try:
                     self.cw = xbmcgui.getCurrentWindowId()
+                    self.cw2 = xbmc.executebuiltin("Window.IsActive(musicinformation)")
+                    self.xml = xbmc.getInfoLabel("Window.Property(xmlfile)")
                     self.p = xbmc.getInfoLabel('Container({}).ListItem().Path'.format(xbmc.getInfoLabel('System.CurrentControlID')))
+                    self.pi = xbmc.getInfoLabel('ListItem().FolderPath')
+                    if player.isPlaying():
+                        if "theme" in player.getPlayingFile():
+                            if self.xml != "DialogVideoInfo.xml":
+                                if self.p != self.nowplayingp:
+                                    player.stop()
+                                    home.clearProperty("TVMelodies.isPlaying")
+                                    self.timer = 0
+                    '''Does not seem to work when trying to play after
+                        DialogVideoInfo has been opened'''
+                    # if self.xml == "DialogVideoInfo.xml":
+                    #     self.dirs, self.files = xbmcvfs.listdir(self.pi)
                     self.dirs, self.files = xbmcvfs.listdir(self.p)
                     for self.i in self.files:
                         if "theme" in self.i:
                             self.fnp = os.path.join(self.p, self.i)
                             if self.fnp != self.nowplaying:
-                                if player.isPlaying():
-                                    if "theme" in player.getPlayingFile():
+                                if self.timer == self.delay:
+                                    if player.isPlaying():
+                                        if "theme" in player.getPlayingFile():
+                                            self.play()
+                                    else:
                                         self.play()
                                 else:
-                                    self.play()
+                                    self.timer+=.5
+
                             if self.debug:
                                 xbmc.log(msg='{}: {}'.format(addonID, self.fnp), level=xbmc.LOGDEBUG)
+                                xbmc.log(msg='{}: {}'.format(addonID, self.timer), level=xbmc.LOGDEBUG)
                     if self.debug:
                         xbmc.log(msg='{}: {}'.format(addonID, self.p), level=xbmc.LOGDEBUG)
+                        xbmc.log(msg='{}: {}'.format(addonID, self.pi), level=xbmc.LOGDEBUG)
                         xbmc.log(msg='{}: {}'.format(addonID, self.cw), level=xbmc.LOGDEBUG)
                 except Exception as err:
                     xbmc.log(msg='{}: {}'.format(addonID, err), level=xbmc.LOGERROR)
@@ -68,8 +92,19 @@ class Monitor(xbmc.Monitor):
     def play(self):
         if self.cw == 10025:
             self.nowplaying = self.fnp
+            self.nowplayingp = self.p
+            home.setProperty("TVMelodies.isPlaying", "True")
             player.play(item=self.fnp, windowed=True)
-            return
+        '''Does not seem to work when trying to play after
+            DialogVideoInfo has been opened'''
+        # else:
+        #     if self.xml == "DialogVideoInfo.xml":
+        #         self.nowplaying = self.fnp
+        #         self.nowplayingp = self.pi
+        #         home.setProperty("TVMelodies.isPlaying", "True")
+        #         player.play(item=self.fnp, windowed=True)
+
+
 
 if __name__ == '__main__':
     Monitor()
