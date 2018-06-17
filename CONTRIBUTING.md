@@ -4,7 +4,7 @@ Community made patches, localizations, bug reports and contributions are always 
 
 When contributing please ensure you follow the guidelines below so that we can keep on top of things.
 
-__Please Note:__ GitHub is for bug reports and contributions only - if you have a support question or a request for a customization don't post here, go to our [forum thread](https://forum.kodi.tv/showthread.php?tid=327042) instead.
+__Please Note:__ GitHub is for bug reports and contributions only - if you have a support question or a request for a customization don't post here, go to our [forum thread](https://forum.kodi.tv/showthread.php?tid=332890) instead.
 
 ## Getting Started
 
