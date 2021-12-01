@@ -31,3 +31,7 @@ msgstr "settings.xml"
 msgctxt "#30010"
 msgid "Enable Debug"
 msgstr "settings.xml"
+
+msgctxt "#30012"
+msgid "Volume 100 is max"
+msgstr "settings.xml"

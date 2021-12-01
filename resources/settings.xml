@@ -3,6 +3,7 @@
 	<category label="30001">
 		<setting label="30002" type="bool" id="enable" default="true"/>
 		<setting label="30003" type="slider" id="delay" default="3" range="1,1,10" option="int"/>
+		<setting label="30012" type="slider" id="volume12" default="75" range="10,5,100" option="percent"/>
 		<setting label="30010" type="bool" id="debug" default="false"/>
 	</category>
 </settings>
