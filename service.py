@@ -39,6 +39,8 @@ class Monitor(xbmc.Monitor):
             self.enable = addon.getSetting("enable")
             self.delay = int(addon.getSetting("delay"))
             self.debug = addon.getSetting("debug")
+            self.vtwelve = addon.getSetting("volume12")  # Get the volume from the settings file JL
+            self.vorg = "100"  # Figure out how to get the original volume and place it here JL
             if self.enable == "true":
                 try:
                     self.cw = xbmcgui.getCurrentWindowId()
@@ -55,6 +57,9 @@ class Monitor(xbmc.Monitor):
                                     player.stop()
                                     home.clearProperty("TVMelodies.isPlaying")
                                     self.timer = 0
+                                    self.acommand="SetVolume("+self.vorg+")"  # Build the python code for exec JL
+                                    xbmc.executebuiltin(self.acommand)  # Restore the original volume JL
+
                     '''Does not seem to work when trying to play after
                         DialogVideoInfo has been opened'''
                     # if self.xml == "DialogVideoInfo.xml":
@@ -72,10 +77,10 @@ class Monitor(xbmc.Monitor):
                                         self.play()
                                 else:
                                     self.timer+=.5
-
                             if self.debug:
                                 xbmc.log(msg='{}: {}'.format(addonID, self.fnp), level=xbmc.LOGDEBUG)
                                 xbmc.log(msg='{}: {}'.format(addonID, self.timer), level=xbmc.LOGDEBUG)
+                                xbmc.log(msg='{}: {}'.format(addonID, self.vtwelve), level=xbmc.LOGDEBUG) # JSR
                     if self.debug:
                         xbmc.log(msg='{}: {}'.format(addonID, self.p), level=xbmc.LOGDEBUG)
                         xbmc.log(msg='{}: {}'.format(addonID, self.pi), level=xbmc.LOGDEBUG)
@@ -89,6 +94,10 @@ class Monitor(xbmc.Monitor):
         if self.cw == 10025:
             self.nowplaying = self.fnp
             self.nowplayingp = self.p
+            #self.acommand="SetVolume("+self.vtwelve+",false)"
+            self.acommand="SetVolume("+self.vtwelve+")" # Build volume command code JL
+            if self.debug: xbmc.log(addonID+" play: ("+self.vtwelve+") "+self.acommand+" "+self.fnp, level=xbmc.LOGINFO) # JL
+            xbmc.executebuiltin(self.acommand) # Set clip volume JL
             home.setProperty("TVMelodies.isPlaying", "True")
             player.play(item=self.fnp, windowed=True)
         '''Does not seem to work when trying to play after
