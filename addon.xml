@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="script.tvmelodies"
-version="0.0.2"
+version="0.0.2.JL"
 name="TV Melodies"
 provider-name="smitchell6879">
-<requires>
-  <import addon="xbmc.python" version="2.25.0"/>
-</requires>
 <extension point="xbmc.python.script" library="script.py"/>
 <provides>video</provides>
 <extension point="xbmc.service" library="service.py" start="[login]"/>
 <extension point="xbmc.addon.metadata">
-  <summary lang="en_GB"></summary>
-  <description lang="en_GB"></description>
-  <disclaimer lang="en_GB">Kodi 17/18 Required</disclaimer>
+  <summary lang="en_GB">Plays a theme file when browsing the root of TV or Movie libraries.</summary>
+  <description lang="en_GB">Plays a theme file when browsing the root of TV or Movie libraries. File must have theme in the name. Notes: multiple theme files in the same folder will probably break it. Volume is currently janked a bit. TV Melodies willl currently set the volume to the volume listed in the addon setting as an absolute % and reset the volume to max when done playing (fine for me, I use an amp, but a bug that should be fixed someday)   </description>
+  <disclaimer lang="en_GB">Kodi 17/18/19 Required</disclaimer>
   <assets>
     <icon>resources/icon.png</icon>
     <!-- <fanart>resources/fanart.jpg</fanart> -->
