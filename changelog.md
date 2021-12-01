@@ -1,4 +1,0 @@
-VERSION 2.0.2 - RELEASE DATE 4/19/2021
-
-MAINTENANCE:
-• I updated service.py.
